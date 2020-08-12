@@ -1,0 +1,3 @@
+excersise2:
+1. Xây dựng bài toán tính diện tích hình chữ nhật, hình vuông có sử dụng class, kế thừa.
+2. Build 1 cái máy tính ( có +, -, *, /) có sử dụng class, DOM, kế thừa

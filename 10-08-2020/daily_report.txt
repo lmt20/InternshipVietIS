@@ -1,0 +1,20 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 10/08/2020
+A. Plan today
+- Tìm hiểu về JavaScript:
++ Tổng quan
++ Syntax cơ bản
+B. Actual today
+1. Tổng quan JavaScript - 100%
+- Là ngôn ngữ kịch bản, hướng đối tượng và đa nền tảng (cross-platform) làm việc được cả 2 phía client và server
+Client-Side:  Quản lý các DOM, tạo các trang dynamic HTML, thao tác với các sự kiện,...
+Server-Side: Kết nối database, thao tác với các tập tin trên server, tạo các api, ...
+- Hỗ trợ các thao tác lập trình hướng sự kiện
+2. Tìm hiểu các syntax cơ bản - 100%
+- Biến trong JS: thuộc loại "loosely typed"-> Không cần khai báo kiểu, có thể thay đổi nhiều kiểu khác nhau cho 1 biến.
+- Một số kiểu dữ liệu cơ bản: Number, String, Boolean, Array, Object, Function, Null, Undefined.
+- Các toán tử Arithmetic, toán tử gán, toán tử so sánh, toán tử logic
+- Câu điều kiện: If else
+- Vòng lặp: for, while
+- Các thao tác cơ bản với String, Array.
+3. Issue:
+- Không gặp khó khăn gì
