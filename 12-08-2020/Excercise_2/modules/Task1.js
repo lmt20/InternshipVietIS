@@ -4,7 +4,7 @@ class Rectangle {
         this.width = width;
     }
     getArea(){
-        return this.height * this.height;
+        return this.height * this.width;
     }
 }
 
@@ -14,3 +14,5 @@ class Square extends Rectangle {
     }
 }
 
+exports.Rectangle = Rectangle;
+exports.Square = Square;

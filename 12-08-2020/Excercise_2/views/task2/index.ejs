@@ -1,0 +1,149 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<div class="panel panel-primary">
+      <div class="panel-heading">
+            <h3 class="panel-title">Simulating Calculator</h3>
+      </div>
+      <div class="panel-body">
+            <div class="container">
+                    <div class="calculator">
+                        <div class="output"></div>
+                        <div class="keyboard">
+                            
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator top-button">C</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator top-button">+/-</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator top-button">%</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator">/</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">7</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">8</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">9</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator">x</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">4</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">5</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">6</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator">-</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">1</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">2</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">3</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator">+</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <button class="number zero">0</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="number">.</button>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                    <button class="operator">=</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+            </div>
+            
+      </div>
+</div>
+
+<script>
+    function calAreaRectangle() {
+        try {
+            var width =  parseInt(document.getElementById("width").value);
+            var height = parseInt(document.getElementById("height").value);
+            var rectangle = document.getElementById('rectangle')
+            rectangle.setAttribute("width", width);
+            rectangle.setAttribute("height", height);
+            //send to server asynchronously
+            fetch('/task1/calculate', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: `width=${width}&height=${height}`
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById("rectangleArea").innerHTML = data.area;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    function calAreaSquare() {
+        try {
+            var size =  parseInt(document.getElementById("size").value);
+            var square = document.getElementById('square')
+            square.setAttribute("width", size);
+            square.setAttribute("height", size);
+            fetch('/task1/calculate', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: `size=${size}`
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                // console.log(data);
+                document.getElementById("squareArea").innerHTML = data.area;
+            })
+            .catch(err => {
+                console.log(err);
+            })  
+        } catch (error) {
+            console.log(error);
+        }
+    }
+</script>
+
+<%- include('../includes/footer.ejs') %>
