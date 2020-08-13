@@ -8,12 +8,12 @@
       <div class="panel-body">
             <div class="container">
                     <div class="calculator">
-                        <div class="output"></div>
+                        <div class="display">0</div>
                         <div class="keyboard">
                             
                             <div class="row">
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <button class="operator top-button">C</button>
+                                    <button class="clearBt operator top-button">C</button>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <button class="operator top-button">+/-</button>
@@ -72,7 +72,7 @@
                                     <button class="number zero">0</button>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <button class="number">.</button>
+                                    <button class="dot">.</button>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <button class="operator">=</button>
@@ -87,63 +87,194 @@
 </div>
 
 <script>
-    function calAreaRectangle() {
-        try {
-            var width =  parseInt(document.getElementById("width").value);
-            var height = parseInt(document.getElementById("height").value);
-            var rectangle = document.getElementById('rectangle')
-            rectangle.setAttribute("width", width);
-            rectangle.setAttribute("height", height);
-            //send to server asynchronously
-            fetch('/task1/calculate', {
-                method: 'post',
-                headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: `width=${width}&height=${height}`
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                document.getElementById("rectangleArea").innerHTML = data.area;
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        } catch (error) {
-            console.log(error);
-        }
+    let memory1 = 0;
+    let memory2 = 0;
+    let processingOperator = null;
+    let isSecondOperand = false;
+    let isResetCalculatorIfPressNumber = false;
+
+    let displayElement = document.getElementsByClassName('display')[0]
+    // let memory = displayElement.innerHTML;
+
+    // set event handler to numbers button
+    let numberElements = document.getElementsByClassName('number');
+    for(let i=0; i<numberElements.length; i++){
+        numberElements[i].addEventListener('click', () => {
+            if(isSecondOperand){
+                displayElement.innerHTML = parseInt(numberElements[i].innerHTML);
+            }
+            else{
+                if(isResetCalculatorIfPressNumber){
+                    isResetCalculatorIfPressNumber = false;
+                    displayElement.innerHTML = parseInt(numberElements[i].innerHTML);
+                }
+                else{
+                    displayElement.innerHTML = parseInt(displayElement.innerHTML + numberElements[i].innerHTML);
+                }
+            }
+        })
+    }
+    //set event handler to clear button
+    let clearElement  = document.getElementsByClassName('clearBt')[0];
+    clearElement.addEventListener('click', () => {
+        displayElement.innerHTML = 0;
+        memory1 = 0;
+        memory2 = 0;
+        processingOperator = null;
+        isSecondOperand = false;
+        isResetCalculatorIfPressNumber = false;
+    })
+    
+    //set event handler to operator button
+    let operatorElements = document.getElementsByClassName('operator');
+    for(let i=0; i<operatorElements.length; i++){
+        operatorElements[i].addEventListener('click', () => {
+            let operator = operatorElements[i].innerHTML;
+            // operatorElements[i].setAttribute('class', 'operator');
+            switch (operator) {
+                case '+':
+                    memory1 = parseFloat(displayElement.innerHTML);
+                    // operatorElements[i].setAttribute('class', 'operator active-operator');
+                    processingOperator = '+';
+                    isResetCalculatorIfPressNumber = false;
+                    isSecondOperand = true;
+                    break;
+                case '-':
+                    memory1 = parseFloat(displayElement.innerHTML);
+                    // operatorElements[i].setAttribute('class', 'operator active-operator');
+                    processingOperator = '-';
+                    isResetCalculatorIfPressNumber = false;
+                    isSecondOperand = true;
+                    break;
+                case 'x':
+                    memory1 = parseFloat(displayElement.innerHTML);
+                    // operatorElements[i].setAttribute('class', 'operator active-operator');
+                    processingOperator = 'x';
+                    isResetCalculatorIfPressNumber = false;
+                    isSecondOperand = true;
+                    break;
+                case '/':
+                    memory1 = parseFloat(displayElement.innerHTML);
+                    // operatorElements[i].setAttribute('class', 'operator active-operator');
+                    processingOperator = '/';
+                    isResetCalculatorIfPressNumber = false;
+                    isSecondOperand = true;
+                    break;
+                case '%':
+                    memory1 = parseFloat(displayElement.innerHTML);
+                    // operatorElements[i].setAttribute('class', 'operator active-operator');
+                    processingOperator = '%';
+                    isResetCalculatorIfPressNumber = false;
+                    isSecondOperand = true;
+                    break;
+                case '=':
+                    let memory2 = parseFloat(displayElement.innerHTML);
+                    let result;
+                    isResetCalculatorIfPressNumber = true;
+                    switch (processingOperator) {
+                        case '+':
+                            result = memory1 + memory2;
+                            memory1 = result;
+                            memory2 = 0;
+                            displayElement.innerHTML = result;
+                            processingOperator = null;
+                            break;
+                        case '-':
+                            result = memory1 - memory2;
+                            memory1 = result;
+                            memory2 = 0;
+                            displayElement.innerHTML = result;
+                            processingOperator = null;
+                            break;
+                        case 'x':
+                            result = memory1 * memory2;
+                            memory1 = result;
+                            memory2 = 0;
+                            displayElement.innerHTML = result;
+                            processingOperator = null;
+                            break;
+                        case '/':
+                            result = memory1 / memory2;
+                            memory1 = result;
+                            memory2 = 0;
+                            displayElement.innerHTML = result;
+                            processingOperator = null;
+                            break;
+                        case '%':
+                            result = memory1 % memory2;
+                            memory1 = result;
+                            memory2 = 0;
+                            displayElement.innerHTML = result;
+                            processingOperator = null;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+    }
+    // console.log(memory);
+    // function calculator() {
+    //     try {
+    //         var width =  parseInt(document.getElementById("width").value);
+    //         var height = parseInt(document.getElementById("height").value);
+    //         var rectangle = document.getElementById('rectangle')
+    //         rectangle.setAttribute("width", width);
+    //         rectangle.setAttribute("height", height);
+    //         //send to server asynchronously
+    //         fetch('/task1/calculate', {
+    //             method: 'post',
+    //             headers: {
+    //             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+    //             },
+    //             body: `width=${width}&height=${height}`
+    //         })
+    //         .then(response => {
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log(data);
+    //             document.getElementById("rectangleArea").innerHTML = data.area;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
         
-    }
-    function calAreaSquare() {
-        try {
-            var size =  parseInt(document.getElementById("size").value);
-            var square = document.getElementById('square')
-            square.setAttribute("width", size);
-            square.setAttribute("height", size);
-            fetch('/task1/calculate', {
-                method: 'post',
-                headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: `size=${size}`
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                // console.log(data);
-                document.getElementById("squareArea").innerHTML = data.area;
-            })
-            .catch(err => {
-                console.log(err);
-            })  
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // }
+    // function calAreaSquare() {
+    //     try {
+    //         var size =  parseInt(document.getElementById("size").value);
+    //         var square = document.getElementById('square')
+    //         square.setAttribute("width", size);
+    //         square.setAttribute("height", size);
+    //         fetch('/task1/calculate', {
+    //             method: 'post',
+    //             headers: {
+    //             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+    //             },
+    //             body: `size=${size}`
+    //         })
+    //         .then(response => {
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             // console.log(data);
+    //             document.getElementById("squareArea").innerHTML = data.area;
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })  
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 </script>
 
 <%- include('../includes/footer.ejs') %>
