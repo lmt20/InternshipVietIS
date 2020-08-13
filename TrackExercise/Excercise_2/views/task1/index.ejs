@@ -1,0 +1,124 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+<div class="panel panel-primary">
+      <div class="panel-heading">
+            <h3 class="panel-title">Calculate area of a reactangle or a square</h3>
+      </div>
+      <div class="panel-body">
+            
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <form>
+                            <legend>Rectangle</legend>                        
+                            <div class="form-group">
+                                <label for="">width</label>
+                                <input type="text" class="form-control" id="width" value="20">
+                                <label for="">height</label>
+                                <input type="text" class="form-control" id="height" value="150">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="calAreaRectangle()" >Calculate area</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <svg>
+                            <rect id='rectangle' width="20" height="150" style="fill:gray;stroke:blue;stroke-width:2;fill-opacity:0.1;stroke-opacity:0.9" />
+                          </svg>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <h4>Rectangle Area:</h4>
+                        <h4 id='rectangleArea'>30000</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <hr>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <form>
+                            <legend>Square</legend>                        
+                            <div class="form-group">
+                                <label for="">size</label>
+                                <input type="text" class="form-control" id="size" value="150">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="calAreaSquare()">Calculate area</button>
+                        </form>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                        <svg>
+                            <rect id='square' width="150" height="150" style="fill:gray;stroke:blue;stroke-width:2;fill-opacity:0.1;stroke-opacity:0.9" />
+                          </svg>
+                    </div>
+                    
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <h4>Square Area:</h4>
+                        <h4 id='squareArea'>22500</h4>
+                    </div>
+                </div>
+                
+            </div>
+            
+      </div>
+</div>
+
+<script>
+    function calAreaRectangle() {
+        try {
+            var width =  parseInt(document.getElementById("width").value);
+            var height = parseInt(document.getElementById("height").value);
+            var rectangle = document.getElementById('rectangle')
+            rectangle.setAttribute("width", width);
+            rectangle.setAttribute("height", height);
+            //send to server asynchronously
+            fetch('/task1/calculate', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: `width=${width}&height=${height}`
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                document.getElementById("rectangleArea").innerHTML = data.area;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    function calAreaSquare() {
+        try {
+            var size =  parseInt(document.getElementById("size").value);
+            var square = document.getElementById('square')
+            square.setAttribute("width", size);
+            square.setAttribute("height", size);
+            fetch('/task1/calculate', {
+                method: 'post',
+                headers: {
+                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: `size=${size}`
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                // console.log(data);
+                document.getElementById("squareArea").innerHTML = data.area;
+            })
+            .catch(err => {
+                console.log(err);
+            })  
+        } catch (error) {
+            console.log(error);
+        }
+    }
+</script>
+
+<%- include('../includes/footer.ejs') %>

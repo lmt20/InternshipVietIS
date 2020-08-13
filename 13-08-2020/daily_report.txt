@@ -1,8 +1,11 @@
-Em Lê Mạnh Trường báo cáo tiến độ ngày 12/08/2020
-Link gửi bài tập Excersice_2: https://github.com/lmt20/InternshipVietIS.git
+Em Lê Mạnh Trường báo cáo tiến độ ngày 14/08/2020
+Link theo dõi bài tập: 
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
 A. Plan today
 1. Tìm hiểu về function
 2. Tìm hiểu về class
+3. Hoàn thành exercise_2
 B. Actual today
 1. Funtion - 100%
 - Mục đích sử dụng: Tái sử dụng code, module hóa và tận dụng được tính hướng đối tượng.
@@ -12,5 +15,6 @@ B. Actual today
 2. Class - 100%
 - Mô tả đối tượng (OOP), định nghĩa các phương thức và các thuộc tính trên đối tượng.
 - Kế thừa class sử dụng extends keyword.
-3. Issue:
+3. Exercise_2 - 100%
+C. Issue:
 - Không gặp khó khăn gì
