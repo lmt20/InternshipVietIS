@@ -10,13 +10,12 @@
                     <div class="calculator">
                         <div class="display">0</div>
                         <div class="keyboard">
-                            
                             <div class="row">
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <button class="clearBt operator top-button">C</button>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <button class="operator top-button">+/-</button>
+                                    <button class="operator top-button revertBt">+/-</button>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <button class="operator top-button">%</button>
@@ -90,30 +89,50 @@
     let memory1 = 0;
     let memory2 = 0;
     let processingOperator = null;
-    let isSecondOperand = false;
+    let isBeginSecondOperand = false;
     let isResetCalculatorIfPressNumber = false;
+    let isRightAfterOperator = false;
 
     let displayElement = document.getElementsByClassName('display')[0]
-    // let memory = displayElement.innerHTML;
 
     // set event handler to numbers button
     let numberElements = document.getElementsByClassName('number');
     for(let i=0; i<numberElements.length; i++){
         numberElements[i].addEventListener('click', () => {
-            if(isSecondOperand){
-                displayElement.innerHTML = parseInt(numberElements[i].innerHTML);
+            if(isBeginSecondOperand){
+                displayElement.innerHTML = parseFloat(numberElements[i].innerHTML);
+                isBeginSecondOperand = false;
             }
             else{
                 if(isResetCalculatorIfPressNumber){
                     isResetCalculatorIfPressNumber = false;
-                    displayElement.innerHTML = parseInt(numberElements[i].innerHTML);
+                    displayElement.innerHTML = parseFloat(numberElements[i].innerHTML);
                 }
                 else{
-                    displayElement.innerHTML = parseInt(displayElement.innerHTML + numberElements[i].innerHTML);
+                    displayElement.innerHTML = parseFloat(displayElement.innerHTML + numberElements[i].innerHTML);
                 }
             }
         })
     }
+
+    //set event handler to dot button
+    let dotElement = document.getElementsByClassName('dot')[0];
+    dotElement.addEventListener('click', () => {
+        if(isBeginSecondOperand){
+                displayElement.innerHTML = 0 + dotElement.innerHTML;
+                isBeginSecondOperand = false;
+            }
+            else{
+                if(isResetCalculatorIfPressNumber){
+                    isResetCalculatorIfPressNumber = false;
+                    displayElement.innerHTML = 0 + dotElement.innerHTML;
+                }
+                else{
+                    displayElement.innerHTML = displayElement.innerHTML + dotElement.innerHTML;
+                }
+            }
+    })
+
     //set event handler to clear button
     let clearElement  = document.getElementsByClassName('clearBt')[0];
     clearElement.addEventListener('click', () => {
@@ -121,15 +140,25 @@
         memory1 = 0;
         memory2 = 0;
         processingOperator = null;
-        isSecondOperand = false;
+        isBeginSecondOperand = false;
         isResetCalculatorIfPressNumber = false;
     })
+
+    //set event handler to switch +/- button (the sign of number displayed on screen will
+    //  be reverted)
+    let revertElement = document.getElementsByClassName('revertBt')[0];
+    revertElement.addEventListener('click', () => {
+        displayElement.innerHTML = -parseFloat(displayElement.innerHTML);
+    })
     
+
+
     //set event handler to operator button
     let operatorElements = document.getElementsByClassName('operator');
     for(let i=0; i<operatorElements.length; i++){
         operatorElements[i].addEventListener('click', () => {
             let operator = operatorElements[i].innerHTML;
+            isRightAfterOperator = true;
             // operatorElements[i].setAttribute('class', 'operator');
             switch (operator) {
                 case '+':
@@ -137,35 +166,35 @@
                     // operatorElements[i].setAttribute('class', 'operator active-operator');
                     processingOperator = '+';
                     isResetCalculatorIfPressNumber = false;
-                    isSecondOperand = true;
+                    isBeginSecondOperand = true;
                     break;
                 case '-':
                     memory1 = parseFloat(displayElement.innerHTML);
                     // operatorElements[i].setAttribute('class', 'operator active-operator');
                     processingOperator = '-';
                     isResetCalculatorIfPressNumber = false;
-                    isSecondOperand = true;
+                    isBeginSecondOperand = true;
                     break;
                 case 'x':
                     memory1 = parseFloat(displayElement.innerHTML);
                     // operatorElements[i].setAttribute('class', 'operator active-operator');
                     processingOperator = 'x';
                     isResetCalculatorIfPressNumber = false;
-                    isSecondOperand = true;
+                    isBeginSecondOperand = true;
                     break;
                 case '/':
                     memory1 = parseFloat(displayElement.innerHTML);
                     // operatorElements[i].setAttribute('class', 'operator active-operator');
                     processingOperator = '/';
                     isResetCalculatorIfPressNumber = false;
-                    isSecondOperand = true;
+                    isBeginSecondOperand = true;
                     break;
                 case '%':
                     memory1 = parseFloat(displayElement.innerHTML);
                     // operatorElements[i].setAttribute('class', 'operator active-operator');
                     processingOperator = '%';
                     isResetCalculatorIfPressNumber = false;
-                    isSecondOperand = true;
+                    isBeginSecondOperand = true;
                     break;
                 case '=':
                     let memory2 = parseFloat(displayElement.innerHTML);
