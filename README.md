@@ -1,5 +1,5 @@
 # InternshipVietIS
-# author: Lê Mạnh Trường
+# uthor: Lê Mạnh Trường
 # Track daily progress: 
 # Includes:
 # - Assigned documents, excercises
