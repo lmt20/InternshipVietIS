@@ -1,0 +1,21 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 14/08/2020
+Link theo dõi bài tập: 
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+- Tìm hiểu về bất đồng bộ trong javascript
+- Cách xử lý bất đồng bộ
+B. Actual today
+1. Tìm hiểu về cơ chế bất đồng bộ - 100%
+- Không giống Java, hay Python... Javascript chỉ hỗ trợ đơn luồng (single-thread)
+- Cần có cơ chế xử lý bất đồng bộ để tối đa hóa tốc độ thực thi và tránh các trường hợp chương trình bị treo khi chờ đợi lần lượt các task thực hiện nếu theo cơ chế đồng bộ thông thường.
+- Theo cơ chế non-blocking, các task được duyệt qua lần lượt, những task nào cần thời gian thực hiện sẽ được lưu lại trong queue, khi có kết quả trả về sẽ trả lại kết quả cho luồng chính. (Bản chất vẫn khá giống đa luồng).
+2. Cách xử lý bất đồng bộ - 100%
+Có 3 cách xử lý:
+- Callback function: đặt function vào như đối số của một hàm khác, function này sẽ được gọi sau khi các thao tác bất đồng bộ trong hàm thực hiện xong và trả về kết quả.
+--> Phát sinh "Callback hell" khi có nhiều callback funtion lồng nhau.
+- Promise: Bản chất cũng dựa trên callback funtion. Bằng cách tạo một đối tượng Promise với 2 trạng thái promise: resolve nếu các thao tác bất đồng bộ xử lý thành công và trả về kết quả, ngược lại trả về reject.ở trạng thái resolve --> promise truyền đến "then" để tiếp tục xử lý. Ở trạng thái reject --> truyền vào "catch" để xử lý lỗi.
+--> Clean code, xâu chuỗi các thao tác xử lý bất đồng bộ liên tiếp bằng cách xâu chuỗi "chaining" - (then).
+-Async/Await: Xuất hiện từ ES7, cho phép ta viết các thao tác bất đồng bộ với phong cách của các thao tác đồng bộ. Bằng cách đặt từ khóa async trước một định nghĩa hàm. Và đặt await trước các thao tác bất đồng bộ. Khi gặp await chương trình sẽ block luồng thực thi đợi đến khi kết quả của thao tác bất đồng bộ trả về mới tiếp tục thực hiện các câu lệnh tiếp theo trong hàm async.
+C. Issue:
+- Không gặp khó khăn gì
