@@ -204,6 +204,14 @@
             isRightAfterOperator = true;
             // operatorElements[i].setAttribute('class', 'operator');
             if(operator === '+' || operator === '-' || operator === 'x' || operator === '/' || operator === '%'){
+                if(processingOperator === '+' || processingOperator === '-' || processingOperator === 'x' || processingOperator === '/' || processingOperator === '%'){
+                    memory2 = parseFloat(displayElement.innerHTML);
+                    const binaryOperator = new BinaryOperator(processingOperator);
+                    let result = binaryOperator.calculateResult(memory1, memory2);
+                    displayElement.innerHTML = result;
+                    memory1 = result;
+                    memory2 = 0;
+                }
                 memory1 = parseFloat(displayElement.innerHTML);
                 processingOperator = operator;
                 isResetCalculatorIfPressNumber = false;
