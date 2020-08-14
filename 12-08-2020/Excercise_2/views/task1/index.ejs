@@ -62,31 +62,31 @@
 </div>
 
 <script>
+    class Rectangle {
+        constructor(height, width){
+            this.height = height;
+            this.width = width;
+        }
+        getArea(){
+            return this.height * this.width;
+        }
+    }
+
+    class Square extends Rectangle {
+        constructor(size) {
+            super(size, size);
+        }
+    }
+
     function calAreaRectangle() {
         try {
-            var width =  parseInt(document.getElementById("width").value);
-            var height = parseInt(document.getElementById("height").value);
-            var rectangle = document.getElementById('rectangle')
+            let width =  parseInt(document.getElementById("width").value);
+            let height = parseInt(document.getElementById("height").value);
+            let rectangle = document.getElementById('rectangle')
             rectangle.setAttribute("width", width);
             rectangle.setAttribute("height", height);
-            //send to server asynchronously
-            fetch('/task1/calculate', {
-                method: 'post',
-                headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: `width=${width}&height=${height}`
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);
-                document.getElementById("rectangleArea").innerHTML = data.area;
-            })
-            .catch(err => {
-                console.log(err);
-            })
+            let rect_instant = new Rectangle(height, width);
+            document.getElementById("rectangleArea").innerHTML = rect_instant.getArea();
         } catch (error) {
             console.log(error);
         }
@@ -98,23 +98,8 @@
             var square = document.getElementById('square')
             square.setAttribute("width", size);
             square.setAttribute("height", size);
-            fetch('/task1/calculate', {
-                method: 'post',
-                headers: {
-                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: `size=${size}`
-            })
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                // console.log(data);
-                document.getElementById("squareArea").innerHTML = data.area;
-            })
-            .catch(err => {
-                console.log(err);
-            })  
+            let square_instant = new Square(size);
+            document.getElementById("squareArea").innerHTML = square_instant.getArea();
         } catch (error) {
             console.log(error);
         }

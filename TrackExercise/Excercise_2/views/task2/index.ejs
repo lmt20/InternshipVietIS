@@ -86,6 +86,49 @@
 </div>
 
 <script>
+    class Operator {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    class UnaryOperator extends Operator {
+        constructor(name) {
+            super(name);
+        }
+
+        calculateResult(number){
+            if(this.name === '+/-'){
+                return -number;
+            }
+        }
+        
+    }
+
+    class BinaryOperator extends Operator {
+        constructor(name) {
+            super(name);
+        }
+
+        calculateResult(number1, number2){
+            switch (this.name) {
+                case '+':
+                    return number1 + number2;
+                case '-':
+                    return number1 - number2;
+                case 'x':
+                    return number1 * number2;
+                case '/':
+                    return number1 / number2;
+                case '%':
+                    return number1 % number2;
+                default:
+                    break;
+            }
+        }
+        
+    }
+
     let memory1 = 0;
     let memory2 = 0;
     let processingOperator = null;
@@ -121,16 +164,16 @@
         if(isBeginSecondOperand){
                 displayElement.innerHTML = 0 + dotElement.innerHTML;
                 isBeginSecondOperand = false;
+        }
+        else{
+            if(isResetCalculatorIfPressNumber){
+                isResetCalculatorIfPressNumber = false;
+                displayElement.innerHTML = 0 + dotElement.innerHTML;
             }
             else{
-                if(isResetCalculatorIfPressNumber){
-                    isResetCalculatorIfPressNumber = false;
-                    displayElement.innerHTML = 0 + dotElement.innerHTML;
-                }
-                else{
-                    displayElement.innerHTML = displayElement.innerHTML + dotElement.innerHTML;
-                }
+                displayElement.innerHTML = displayElement.innerHTML + dotElement.innerHTML;
             }
+        }
     })
 
     //set event handler to clear button
@@ -148,11 +191,11 @@
     //  be reverted)
     let revertElement = document.getElementsByClassName('revertBt')[0];
     revertElement.addEventListener('click', () => {
-        displayElement.innerHTML = -parseFloat(displayElement.innerHTML);
+        const revertOperator = new UnaryOperator('+/-');
+        processingOperator = '+/-';
+        displayElement.innerHTML = revertOperator.calculateResult(parseFloat(displayElement.innerHTML));
     })
     
-
-
     //set event handler to operator button
     let operatorElements = document.getElementsByClassName('operator');
     for(let i=0; i<operatorElements.length; i++){
@@ -160,150 +203,29 @@
             let operator = operatorElements[i].innerHTML;
             isRightAfterOperator = true;
             // operatorElements[i].setAttribute('class', 'operator');
-            switch (operator) {
-                case '+':
-                    memory1 = parseFloat(displayElement.innerHTML);
-                    // operatorElements[i].setAttribute('class', 'operator active-operator');
-                    processingOperator = '+';
-                    isResetCalculatorIfPressNumber = false;
-                    isBeginSecondOperand = true;
-                    break;
-                case '-':
-                    memory1 = parseFloat(displayElement.innerHTML);
-                    // operatorElements[i].setAttribute('class', 'operator active-operator');
-                    processingOperator = '-';
-                    isResetCalculatorIfPressNumber = false;
-                    isBeginSecondOperand = true;
-                    break;
-                case 'x':
-                    memory1 = parseFloat(displayElement.innerHTML);
-                    // operatorElements[i].setAttribute('class', 'operator active-operator');
-                    processingOperator = 'x';
-                    isResetCalculatorIfPressNumber = false;
-                    isBeginSecondOperand = true;
-                    break;
-                case '/':
-                    memory1 = parseFloat(displayElement.innerHTML);
-                    // operatorElements[i].setAttribute('class', 'operator active-operator');
-                    processingOperator = '/';
-                    isResetCalculatorIfPressNumber = false;
-                    isBeginSecondOperand = true;
-                    break;
-                case '%':
-                    memory1 = parseFloat(displayElement.innerHTML);
-                    // operatorElements[i].setAttribute('class', 'operator active-operator');
-                    processingOperator = '%';
-                    isResetCalculatorIfPressNumber = false;
-                    isBeginSecondOperand = true;
-                    break;
-                case '=':
-                    let memory2 = parseFloat(displayElement.innerHTML);
-                    let result;
+            if(operator === '+' || operator === '-' || operator === 'x' || operator === '/' || operator === '%'){
+                memory1 = parseFloat(displayElement.innerHTML);
+                processingOperator = operator;
+                isResetCalculatorIfPressNumber = false;
+                isBeginSecondOperand = true;
+            }
+            else if(operator === '='){
+                isResetCalculatorIfPressNumber = true;
+                if(processingOperator === '+' || processingOperator === '-' || processingOperator === 'x' || processingOperator === '/' || processingOperator === '%'){
+                    memory2 = parseFloat(displayElement.innerHTML);
+                    // console.log(memory1, memory2);
                     isResetCalculatorIfPressNumber = true;
-                    switch (processingOperator) {
-                        case '+':
-                            result = memory1 + memory2;
-                            memory1 = result;
-                            memory2 = 0;
-                            displayElement.innerHTML = result;
-                            processingOperator = null;
-                            break;
-                        case '-':
-                            result = memory1 - memory2;
-                            memory1 = result;
-                            memory2 = 0;
-                            displayElement.innerHTML = result;
-                            processingOperator = null;
-                            break;
-                        case 'x':
-                            result = memory1 * memory2;
-                            memory1 = result;
-                            memory2 = 0;
-                            displayElement.innerHTML = result;
-                            processingOperator = null;
-                            break;
-                        case '/':
-                            result = memory1 / memory2;
-                            memory1 = result;
-                            memory2 = 0;
-                            displayElement.innerHTML = result;
-                            processingOperator = null;
-                            break;
-                        case '%':
-                            result = memory1 % memory2;
-                            memory1 = result;
-                            memory2 = 0;
-                            displayElement.innerHTML = result;
-                            processingOperator = null;
-                            break;
-                        default:
-                            break;
+                    const binaryOperator = new BinaryOperator(processingOperator);
+                    let result = binaryOperator.calculateResult(memory1, memory2);
+                    memory1 = result;
+                    memory2 = 0;
+                    displayElement.innerHTML = result;
+                    processingOperator = null;
                     }
-                    break;
-            
-                default:
-                    break;
+
             }
         })
     }
-    // console.log(memory);
-    // function calculator() {
-    //     try {
-    //         var width =  parseInt(document.getElementById("width").value);
-    //         var height = parseInt(document.getElementById("height").value);
-    //         var rectangle = document.getElementById('rectangle')
-    //         rectangle.setAttribute("width", width);
-    //         rectangle.setAttribute("height", height);
-    //         //send to server asynchronously
-    //         fetch('/task1/calculate', {
-    //             method: 'post',
-    //             headers: {
-    //             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-    //             },
-    //             body: `width=${width}&height=${height}`
-    //         })
-    //         .then(response => {
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             console.log(data);
-    //             document.getElementById("rectangleArea").innerHTML = data.area;
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-        
-    // }
-    // function calAreaSquare() {
-    //     try {
-    //         var size =  parseInt(document.getElementById("size").value);
-    //         var square = document.getElementById('square')
-    //         square.setAttribute("width", size);
-    //         square.setAttribute("height", size);
-    //         fetch('/task1/calculate', {
-    //             method: 'post',
-    //             headers: {
-    //             "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-    //             },
-    //             body: `size=${size}`
-    //         })
-    //         .then(response => {
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             // console.log(data);
-    //             document.getElementById("squareArea").innerHTML = data.area;
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })  
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
 </script>
 
 <%- include('../includes/footer.ejs') %>

@@ -1,0 +1,3 @@
+Exercise 3:
+	1. Xây dựng lại bài toán thiết kế 1 chiếc máy tính dùng async, await, promise, callback ( ko cần phải dùng class)
+	2. Xây dựng 1 cái đồng hồ chạy ngon nghẻ dùng async, await, promise, callback
