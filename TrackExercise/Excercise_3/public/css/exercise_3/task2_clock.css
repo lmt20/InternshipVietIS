@@ -72,12 +72,38 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.clock:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 500px;
+	height: 500px; 
+	border-radius: 280px  280px 280px 280px;
+    transform: translate(-50%, -50%);
     background-image: url("https://cdn.spacetelescope.org/archives/images/screen/heic0311a.jpg");
     background-repeat: no-repeat;
     background-position: center; 
-    background-size: 500px 500px;
+	background-size: 500px 500px;
+	z-index: -1;
+	animation-name: rotateBg;
+	animation-duration: 150s;
+	animation-timing-function: linear;
+	animation-delay: 0s;
+	animation-iteration-count: infinite;
+	animation-direction: forward;
+
+
 }
 
+@keyframes rotateBg {
+	0%   {transform: translate(-50%, -50%) rotate(0deg) }
+	25%  {transform: translate(-50%, -50%) rotate(90deg) }
+	50%  {transform: translate(-50%, -50%) rotate(180deg) }
+	75%  {transform: translate(-50%, -50%) rotate(270deg) }
+	100% {transform: translate(-50%, -50%) rotate(360deg) }
+  }
 
 .clock:before{
 	content: '';

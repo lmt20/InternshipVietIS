@@ -10,12 +10,13 @@ for(let fractionPercent=0; fractionPercent < 360; fractionPercent += 6)
     }
 }
 
-
 //set running time for clock
 const secDiv = document.getElementById('sec');
 const minDiv = document.getElementById('min');
 const hourDiv = document.getElementById('hour');
 const digitalClockElement = document.getElementById('digitalClock');
+const mainClockElement = document.getElementsByClassName('bg-main-clock')[0];
+
 updateClock = () => {
     let date = new Date();
     //set running time for main clock
@@ -28,9 +29,11 @@ updateClock = () => {
     //set running time for digital clock
     digitalClockElement.innerHTML = date.toLocaleTimeString();
 
+    
 }
-
 updateClock()
 setInterval(updateClock, 1000);
+
+
 
 
