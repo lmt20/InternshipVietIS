@@ -1,0 +1,248 @@
+.label-clock-task {
+	display: inline-block;
+	position: absolute;
+	font-size: 28px;
+	font-weight: 800;
+	padding: 0;
+	margin-left: 15px;
+	bottom: 10%;
+	left: 0%;
+}
+.galaxy-navigation-background {
+	background-color: gray;
+	background:url("https://cdn.theatlantic.com/thumbor/ONBPYnEWXncYCeF1sK_17gbjZgw=/0x154:5520x3031/960x500/media/img/mt/2020/06/GettyImages_1038322268/original.jpg");
+    background-repeat: no-repeat;
+    background-position: left; 
+	background-size: 100% ;
+	position: relative;
+	height: 100px;
+}
+
+.digital-clock {
+	display: inline-block;
+	position: absolute;
+	left: 80%;
+	top: 50%;
+	transform: translate(0%, -50%);
+	font-size: 40px;
+	font-weight: 800;
+	color: #000;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	width: 20%;
+}
+
+.panel-clock {
+	height: 800px;
+    width: 100%;
+    position: relative;
+    background:url("https://www.payvnn.com/wp-content/uploads/2018/03/header-background-3.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+	background-size: 100% 800px;
+	margin: -20px 0 0 0 ;
+}
+.panel-clock * {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Droid Serif", serif;
+}
+.clock-containter {
+    position: absolute;
+    width: 600px;
+    height: 550px;  
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("https://static01.nyt.com/images/2020/05/26/science/20SCI-GALAXY1/20SCI-GALAXY1-mediumSquareAt3X.jpg");;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: 600px 550px;
+    background-color: #111;
+}
+.clock{
+	position: absolute;
+	width: 500px;
+	height: 500px;  
+	overflow: hidden;
+	border-radius: 300px  300px 250px 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("https://cdn.spacetelescope.org/archives/images/screen/heic0311a.jpg");
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-size: 500px 500px;
+}
+
+
+.clock:before{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 20px;
+	height: 20px;
+	background-color: #6C5116;
+	border-radius: 50%;
+}
+
+.num{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	font-size: 4rem;
+	font-weight: 600;
+	color: #000;
+	padding: 18px;
+}
+
+.divideMark{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	text-align: center;
+	font-size: 3rem;
+	font-weight: 560;
+	padding: 18px;
+}
+
+.num:after{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 5px;
+	height: 10px;
+	background-color: black;
+}
+.divideMark:after{
+	content: '';
+	position: absolute;
+	top: 0%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 1.5px;
+	height: 9px;
+    background-color: black;
+}
+
+.num1{
+    transform: rotate(30deg);
+}
+.num1 div{
+	transform: rotate(-30deg);
+}
+
+.num2{
+	transform: rotate(60deg);
+}
+.num2 div{
+	transform: rotate(-60deg);
+}
+
+.num3{
+	transform: rotate(90deg);
+}
+.num3 div{
+	transform: rotate(-90deg);
+}
+
+.num4{
+	transform: rotate(120deg);
+}
+.num4 div{
+	transform: rotate(-120deg);
+}
+
+.num5{
+	transform: rotate(150deg);
+}
+.num5 div{
+	transform: rotate(-150deg);
+}
+
+.num6{
+	transform: rotate(180deg);
+}
+.num6 div{
+	transform: rotate(-180deg);
+}
+
+.num7{
+	transform: rotate(210deg);
+}
+.num7 div{
+	transform: rotate(-210deg);
+}
+
+.num8{
+	transform: rotate(240deg);
+}
+.num8 div{
+	transform: rotate(-240deg);
+}
+
+.num9{
+	transform: rotate(270deg);
+}
+.num9 div{
+	transform: rotate(-270deg);
+}
+
+.num10{
+	transform: rotate(300deg);
+}
+.num10 div{
+	transform: rotate(-300deg);
+}
+
+.num11{
+	transform: rotate(330deg);
+}
+.num11 div{
+	transform: rotate(-330deg);
+}
+
+.hand{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.hand div{
+	position: absolute;
+	bottom: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #000;
+}
+
+.sec{
+	width: 2px;
+	height: 44%;
+}
+
+.min{
+	height: 39%;
+	width: 6px;
+	border-radius: 2px;
+}
+
+.hour{
+	height: 29%;
+	width: 9px;
+	border-radius: 4px;
+}
