@@ -14,8 +14,8 @@ B. Actual today
 Có 3 cách xử lý:
 - Callback function: đặt function vào như đối số của một hàm khác, function này sẽ được gọi sau khi các thao tác bất đồng bộ trong hàm thực hiện xong và trả về kết quả.
 --> Phát sinh "Callback hell" khi có nhiều callback funtion lồng nhau.
-- Promise: Bản chất cũng dựa trên callback funtion. Bằng cách tạo một đối tượng Promise với 2 trạng thái promise: resolve nếu các thao tác bất đồng bộ xử lý thành công và trả về kết quả, ngược lại trả về reject.ở trạng thái resolve --> promise truyền đến "then" để tiếp tục xử lý. Ở trạng thái reject --> truyền vào "catch" để xử lý lỗi.
+- Promise: Bản chất cũng dựa trên callback funtion. Bằng cách tạo một đối tượng Promise với 2 callback: resolve nếu các thao tác bất đồng bộ xử lý thành công và trả về kết quả, ngược lại trả về reject.Sau khi return về một promise. Hàm then nhận kết quả promise truyền tới và tiếp tục xử lý (promise này có thể nhận kết quả của cả resolve hoặc reject) . Nếu xuất hiện lỗi truyền vào "catch" để xử lý lỗi.
 --> Clean code, xâu chuỗi các thao tác xử lý bất đồng bộ liên tiếp bằng cách xâu chuỗi "chaining" - (then).
--Async/Await: Xuất hiện từ ES7, cho phép ta viết các thao tác bất đồng bộ với phong cách của các thao tác đồng bộ. Bằng cách đặt từ khóa async trước một định nghĩa hàm. Và đặt await trước các thao tác bất đồng bộ. Khi gặp await chương trình sẽ block luồng thực thi đợi đến khi kết quả của thao tác bất đồng bộ trả về mới tiếp tục thực hiện các câu lệnh tiếp theo trong hàm async.
+-Async/Await: Xuất hiện từ ES7, cho phép ta viết các thao tác bất đồng bộ với phong cách của các thao tác đồng bộ. Bản chất dựa trên Promise. Bằng cách đặt từ khóa async trước một định nghĩa hàm. Và đặt await trước các thao tác bất đồng bộ. Khi gặp await chương trình sẽ block luồng thực thi đợi đến khi kết quả của thao tác bất đồng bộ trả về mới tiếp tục thực hiện các câu lệnh tiếp theo trong hàm async.
 C. Issue:
 - Không gặp khó khăn gì
