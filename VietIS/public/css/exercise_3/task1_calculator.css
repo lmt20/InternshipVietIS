@@ -1,0 +1,67 @@
+
+.calculator {
+    width: 380px;
+    height: 550px;
+    margin: 0 auto;
+    position: relative;
+    border: 2px solid rgba(78,78,74,1);
+    border-radius: 5px;
+    background-color: black;
+}
+
+.display {
+    position: relative;
+    width: 90%;
+    height: 150px;
+    margin: 0 auto;
+    font-size: 45px;
+    color: rgba(250,247,246,1);
+    text-align: right;
+    padding: 45px 0 0 0 ;
+
+    /* border: 5px solid rgb(16, 16, 20); */
+}
+.keyboard {
+    margin: 0px 15px;
+}
+
+.operator, .number, .dot, .clearBt {
+    width: 100%;
+    height: 50px;
+    margin: 15px 0 15px;
+    border-width: 0px;
+    border-radius: 50%;
+    /* font-weight: bold; */
+	font-size: 25px;
+}
+
+.operator, .clearBt {
+    background-color: rgba(252,156,12,1);
+    color: rgba(250,247,246,1)
+    
+}
+.active-operator {
+    background-color: rgba(250,247,246,1);
+    color: rgba(252,156,12,1);
+}
+.number, .dot {
+    background-color: rgb(49,49,49);
+    color: rgba(250,247,246,1)
+}
+
+.top-button{
+    background-color:rgba(240,240,234,1);
+    color: rgba(36,34,33,1)
+}
+.zero {
+    width: 91%;
+    border-radius: 22px 22px;
+    text-align: left;
+    padding: 0 22px;
+}
+
+.number, .dot, .operator, .clearBt{
+	cursor: pointer;
+}
+
+

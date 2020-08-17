@@ -1,0 +1,71 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Task 2</h3>
+      </div>
+      <div class="panel-body">
+        Write a JavaScript program which accept a number as input and insert dashes (-) between each two 
+        even number characters. <br/>
+        For example if you accept 025468 the output should be 0-254-6-8
+      </div>
+</div>
+<div class="panel panel-success">
+      <div class="panel-heading">
+            <h3 class="panel-title">Solution</h3>
+      </div>
+      <div class="panel-body">
+        <div class="m-15">
+            <i class="fas fa-terminal"></i>
+            <div class="output-system">Enter string of numbers:</div>
+        </div>
+        <div class="m-15 input" >
+            <i class="fas fa-angle-double-right"></i>
+            <input class="input-system" type="text" placeholder="Ex: 025468">
+            <!-- <div class="input-system"> -->
+        </div>
+        <div class="m-15 output-display">
+            <i class="fas fa-share-square icon-ouput-result"></i>    
+            <textarea class="output-result"></textarea>
+        </div>
+         
+      </div>
+</div>
+<script>
+    const inputElement = document.getElementsByClassName("input-system")[0];
+    const outputPanelElement = document.getElementsByClassName("output-display")[0];
+    const outputContentElement = document.getElementsByClassName("output-result")[0];
+    inputElement.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const input = inputElement.value.trim();
+            const numbers = input.split('');
+            let isEvenBeforeNumber = false;
+            let evenNumbersChar = '';
+            numbers.forEach(numberChar => {
+                let number = parseInt(numberChar);
+                if (number % 2 === 0 ) {
+                    if(isEvenBeforeNumber){
+                        evenNumbersChar += '-';
+                    }
+                    isEvenBeforeNumber = true;
+                }
+                else{
+                    isEvenBeforeNumber = false;
+                }
+                evenNumbersChar += numberChar;
+            });
+            const result = 'Your string of numbers that you entered:' + '\n' 
+                            + input + '\n'
+                            + 'Output:\n'
+                            + evenNumbersChar;
+      
+            outputPanelElement.setAttribute('style', 'display: block;');
+            outputContentElement.value = result;
+        }
+    });
+</script>
+
+<%- include('../includes/footer.ejs') %>

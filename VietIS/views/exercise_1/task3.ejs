@@ -1,0 +1,55 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Task 3</h3>
+      </div>
+      <div class="panel-body">
+        Write a JavaScript program to sort the items of an array <br/>
+        Sample array : var arr1 = [ 3, 8, 7, 6, 5, -4, -3, 2, 1 ]; <br/>
+        Sample Output : -4,-3,1,2,3,5,6,7,8
+      </div>
+</div>
+<div class="panel panel-success">
+      <div class="panel-heading">
+            <h3 class="panel-title">Solution</h3>
+      </div>
+      <div class="panel-body">
+        <div class="m-15">
+            <i class="fas fa-terminal"></i>
+            <div class="output-system">Enter list of numbers in your array, the items are seperated by a space character:</div>
+        </div>
+        <div class="m-15 input" >
+            <i class="fas fa-angle-double-right"></i>
+            <input class="input-system" type="text" placeholder="Ex: 3 8 7 6 5 -4 -3 2 1">
+        </div>
+        <div class="m-15 output-display">
+            <i class="fas fa-share-square icon-ouput-result"></i>    
+            <textarea class="output-result"></textarea>
+        </div>
+         
+      </div>
+</div>
+<script>
+    const inputElement = document.getElementsByClassName("input-system")[0];
+    const outputPanelElement = document.getElementsByClassName("output-display")[0];
+    const outputContentElement = document.getElementsByClassName("output-result")[0];
+    inputElement.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const input = inputElement.value.trim();
+            const arr = input.split(' ').map(numChar => parseInt(numChar));
+            const result = 'Your array:' + '\n' 
+                            + input + '\n'
+                            + 'Output:\n'
+                            + arr.sort((a, b) => a-b);
+      
+            outputPanelElement.setAttribute('style', 'display: block;');
+            outputContentElement.value = result;
+        }
+    });
+</script>
+
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,70 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+
+
+<div class="panel panel-default">
+      <div class="panel-heading">
+            <h3 class="panel-title">Task 4</h3>
+      </div>
+      <div class="panel-body">
+        Write a JavaScript program to find the most frequent item of an array<br/>
+        Sample array : var arr1=[3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];<br/>
+        Sample Output : a ( 5 times )<br/>
+        Sample Output : 3 ( 4 times )<br/>
+      </div>
+</div>
+<div class="panel panel-success">
+      <div class="panel-heading">
+            <h3 class="panel-title">Solution</h3>
+      </div>
+      <div class="panel-body">
+        <div class="m-15">
+            <i class="fas fa-terminal"></i>
+            <div class="output-system">Enter list of items in your array, the items are seperated by a space character:</div>
+        </div>
+        <div class="m-15 input" >
+            <i class="fas fa-angle-double-right"></i>
+            <input class="input-system" type="text" placeholder="Ex: 3 a a 2 3 a 3 a 2 4 9 3">
+        </div>
+        <div class="m-15 output-display">
+            <i class="fas fa-share-square icon-ouput-result"></i>    
+            <textarea class="output-result"></textarea>
+        </div>
+         
+      </div>
+</div>
+<script>
+    const inputElement = document.getElementsByClassName("input-system")[0];
+    const outputPanelElement = document.getElementsByClassName("output-display")[0];
+    const outputContentElement = document.getElementsByClassName("output-result")[0];
+    inputElement.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            const input = inputElement.value.trim();
+            const arr = input.split(' ');
+            const uniqueItems = [...new Set(arr)];
+            const frequency = uniqueItems.map(item => {
+                let count = 0;
+                arr.forEach(element => {
+                    if (item === element) {
+                        count += 1;
+                    }
+                });
+                return { item: item, count: count };
+            });
+            const resultItem = frequency.sort((ele1, ele2) => ele2.count - ele1.count)[0];
+            const result = 'Your array:' + '\n' 
+                            + input + '\n'
+                            + 'Output:\n'
+                            + 'Frequent items:\n'
+                            + JSON.stringify(frequency.sort((ele1, ele2) => ele2.count - ele1.count)) + '\n'
+                            + 'The item with the most occurrences:\n'
+                            + resultItem.item + ' ( ' + resultItem.count + ' times )';
+      
+            outputPanelElement.setAttribute('style', 'display: block;');
+            outputContentElement.value = result;
+        }
+    });
+</script>
+
+<%- include('../includes/footer.ejs') %>

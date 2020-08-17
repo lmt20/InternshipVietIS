@@ -1,0 +1,16 @@
+<%- include('../includes/header.ejs') %> <%-
+include('../includes/navigation.ejs') %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Daily Report <%= date %> </h3>
+  </div>
+  <div class="panel-body">
+  <%- data %> 
+  </div>
+  
+  <a class="btn btn-default m-10" href="/daily-reports/download/<%= date %>">Download</a>
+  
+</div>
+
+<%- include('../includes/footer.ejs') %>

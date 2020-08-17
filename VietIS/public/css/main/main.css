@@ -1,0 +1,60 @@
+.m10 {
+    margin: 0 10px 0 10px;
+}
+.plr-20 {
+    padding: 0 20px 0 20px;
+}
+
+.mt-5 {
+    margin-top: 5px;
+}
+.pt-5 {
+    padding-top: 5px;
+}
+.mt-10 {
+    margin-top: 10px;
+}
+.pt-10 {
+    padding-top: 10px;
+}
+.m-15 {
+    margin: 15px;
+}
+.p-15 {
+    padding: 15px;
+}
+.m-10 {
+    margin: 10px;
+}
+.p-10 {
+    padding: 10px;
+}
+
+#homepage {
+    color: #fff;
+}
+.dropdown-menu-style-own {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+.dropdown-item-style-own {
+    display: block;
+    color: #fff;
+    background-color: #222;
+    padding: 15px 15px 0px 15px;
+    text-decoration: none;
+}
+.dropdown-item-style-own:last-child {
+    padding-bottom: 15px;
+}
+
+.dropdown-item-style-own:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #080808;
+}
+
+.fontSize2x {
+    font-size: 2rem;
+}
