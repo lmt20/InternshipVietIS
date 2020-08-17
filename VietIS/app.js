@@ -1,7 +1,7 @@
 const express = require('express');
 var bodyParser = require('body-parser')
 const app = express();
-const port = 33555;
+const port = process.env.PORT || 15128;
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
