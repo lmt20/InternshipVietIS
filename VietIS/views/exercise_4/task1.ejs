@@ -1,0 +1,298 @@
+<%- include('../includes/header.ejs') %>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="panel panel-default">
+        <div class="panel-heading bg-warning">
+            Exercise_4
+        </div>
+        <div class="panel-body">
+            <h5 class="panel-title">Task1: </h5>
+            <p class="panel-text">Tạo form nhập điểm học sinh với các điểm Toán Lý Hóa như bên dưới</p>
+            <img src="/imgs/table.png" alt="TB" style="width: 100%;">
+            <div class="small">
+                <p>1. Nhập điểm 3 môn Toán Lý Hóa cho các học sinh như danh sách trên , rồi tự động cập nhật kết qủa
+                    điểm trung bình 3 môn và xếp loại học lực như điều kiện bên dưới</p>
+                <p>* Giỏi: Điểm trung bình 3 môn trên 8.5</p>
+                <p>* Khá:Điểm trung bình 3 môn từ 7.0 -> 8.49</p>
+                <p>* Trung bình: Điểm trung bình 3 môn từ 6.0 -> 6.99</p>
+                <p>2. Làm 3 button như bên trên và có chức năng như sau:</p>
+                <p>1. Button Reset: Click button reset thì delete hết các thông tin ở cột Họ và Tên, Điểm Toán, Điểm Lý,
+                    Điểm Hóa, Điểm trung bình , Xếp loại</p>
+                <p>2. Button Save: Lưu thông tin form vừa nhập, có tất cả các thông tin thành 1 file excel</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="panel panel-success">
+          <div class="panel-heading">
+                <h3 class="panel-title">Solution</h3>
+          </div>
+    </div>
+    <table class="table table-striped table-hover table-condensed table-responsive" id="student-table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>STT</th>
+                <th>Họ và tên</th>
+                <th>Điểm Toán</th>
+                <th>Điểm Lý</th>
+                <th>Điểm Hóa</th>
+                <th>Điểm Trung Bình</th>
+                <th>Xếp Loại</th>
+            </tr>
+        </thead>
+        <tbody id="body-table"></tbody>
+    </table>
+
+    <div class="d-flex justify-content-end mr-5">
+        <button type="button" class="btn btn-primary mr-3" id='export-excel'>Save</button>
+        <button type="button" class="btn btn-primary" id='reset-table'>Reset</button>
+    </div>
+    
+    <div class="card  mt-25">
+        <div class="card-footer">
+            Created by Le Manh Truong
+        </div>
+    </div>
+    <script>
+        const bodyTable = document.getElementById('body-table');
+        const resetButtonEle = document.getElementById('reset-table');
+
+        const lastName = ['Lê', 'Phạm', 'Nguyễn', 'Vũ', 'Kiều', 'Trần', 'Đoàn', 'Phùng', 'Lường', 'Đào', 'Phan'];
+        const maleMiddleName = ['Văn', 'Mạnh', 'Trọng', 'Quang', 'Hoàng'];
+        const femaleMiddleName = ['Thị', 'Diễm', 'Thu', 'Thị', 'Thu', 'Thanh'];
+        const maleFirstName = ['Trường', 'Minh', 'Tùng', 'Lâm', 'Toàn', 'Hiếu', 'Nghĩa', 'Long', 'Nhật', 'Bách', 'Trung'];
+        const femaleFirstName = ['Linh', 'Hà', 'Quỳnh', 'Hằng', 'Mai', 'Thảo', 'Diệp', 'Chi', 'Uyên', 'Bích'];
+
+        const generateIndex = (length) => {
+            return Math.floor(Math.random() * length);
+        }
+        const generateFullname = () => {
+            const lastNameGenerate = lastName[generateIndex(lastName.length)];
+            if (Math.random() > 0.5) {
+                const maleMiddleNameGenerate = maleMiddleName[generateIndex(maleMiddleName.length)];
+                const maleFirstNameGenerate = maleFirstName[generateIndex(maleFirstName.length)];
+                return lastNameGenerate + " " + maleMiddleNameGenerate + " " + maleFirstNameGenerate;
+            } else {
+                const femaleMiddleNameGenerate = femaleMiddleName[generateIndex(femaleMiddleName.length)];
+                const femaleFirstNameGenerate = femaleFirstName[generateIndex(femaleFirstName.length)];
+                return lastNameGenerate + " " + femaleMiddleNameGenerate + " " + femaleFirstNameGenerate;
+            }
+        }
+
+        // create rows
+        for (let index = 0; index < 12; index++) {
+            const rowElement = document.createElement('tr');
+            rowElement.setAttribute('id', `row-${index + 1}`);
+
+            const numIndexEle = document.createElement('td');
+            numIndexEle.innerHTML = index + 1;
+
+            const fullNameEle = document.createElement('td');
+            const inputNameEle = document.createElement('input');
+            const fullNameStr = generateFullname();
+            inputNameEle.value = fullNameStr
+            fullNameEle.appendChild(inputNameEle);
+            //hidden textNode
+            const namePseudouEle = document.createElement('p');
+            namePseudouEle.innerHTML = fullNameStr;
+            fullNameEle.appendChild(namePseudouEle);
+            namePseudouEle.setAttribute('style', 'display: none');
+
+            inputNameEle.addEventListener('change', () => {
+                namePseudouEle.innerHTML = inputNameEle.value;
+            })
+
+            const mathPointEle = document.createElement('td');
+            const inputMathEle = document.createElement('input');
+            mathPointEle.appendChild(inputMathEle);
+            //hidden textNode
+            const mathPseudouEle = document.createElement('p');
+            mathPointEle.appendChild(mathPseudouEle);
+            mathPseudouEle.setAttribute('style', 'display: none');
+
+            const physicsPointEle = document.createElement('td');
+            const inputPhysicsEle = document.createElement('input');
+            physicsPointEle.appendChild(inputPhysicsEle);
+            //hidden textNode
+            const physicsPseudouEle = document.createElement('p');
+            physicsPointEle.appendChild(physicsPseudouEle);
+            physicsPseudouEle.setAttribute('style', 'display: none');
+
+            const chemistryPointEle = document.createElement('td');
+            const inputChemistryEle = document.createElement('input');
+            chemistryPointEle.appendChild(inputChemistryEle);
+            //hidden textNode
+            const chemistryPseudouEle = document.createElement('p');
+            chemistryPointEle.appendChild(chemistryPseudouEle);
+            chemistryPseudouEle.setAttribute('style', 'display: none');
+
+            const averagePointEle = document.createElement('td');
+            const inputAverageEle = document.createElement('input');
+            inputAverageEle.setAttribute('disabled', true)
+            averagePointEle.appendChild(inputAverageEle);
+            //hidden textNode
+            const averagePseudouEle = document.createElement('p');
+            averagePointEle.appendChild(averagePseudouEle);
+            averagePseudouEle.setAttribute('style', 'display: none');
+
+            const categoryEle = document.createElement('td');
+            const inputCategoryEle = document.createElement('input');
+            inputCategoryEle.setAttribute('disabled', true);
+            categoryEle.appendChild(inputCategoryEle);
+            //hidden textNode
+            const categoryPseudouEle = document.createElement('p');
+            categoryEle.appendChild(categoryPseudouEle);
+            categoryPseudouEle.setAttribute('style', 'display: none');
+
+            rowElement.appendChild(numIndexEle);
+            rowElement.appendChild(fullNameEle);
+            rowElement.appendChild(mathPointEle);
+            rowElement.appendChild(physicsPointEle);
+            rowElement.appendChild(chemistryPointEle);
+            rowElement.appendChild(averagePointEle);
+            rowElement.appendChild(categoryEle);
+            bodyTable.appendChild(rowElement);
+
+            //set event handlers.   
+            const calculatePoint = (mathPoint, physicsPoint, chemistryPoint) => {
+                try {
+                    mathPoint = parseFloat(mathPoint);
+                    physicsPoint = parseFloat(physicsPoint);
+                    chemistryPoint = parseFloat(chemistryPoint);
+                    if (Number.isNaN(mathPoint) || Number.isNaN(physicsPoint) || Number.isNaN(chemistryPoint)) {
+                        throw new Error("NAN");
+                    }
+                    console.log(mathPoint, physicsPoint, chemistryPoint);
+                    let averagePoint = Math.round((mathPoint + physicsPoint + chemistryPoint) / 3 * 100) / 100;
+                    inputAverageEle.value = averagePoint;
+                    averagePseudouEle.innerHTML = averagePoint;
+                    let category = "";
+                    if (averagePoint >= 8.5) {
+                        category = "Giỏi";
+                    } else if (averagePoint >= 7) {
+                        category = "Khá";
+                    } else if (averagePoint >= 6) {
+                        category = "Trung Bình";
+                    } else {
+                        category = "Yếu";
+                    }
+                    inputCategoryEle.value = category;
+                    categoryPseudouEle.innerHTML = category;
+
+                } catch (error) {
+                    console.log(error);
+                    console.log("done");
+                }
+            }
+
+
+            inputMathEle.addEventListener('change', () => {
+                let mathPoint = inputMathEle.value;
+                let physicsPoint = inputPhysicsEle.value;
+                let chemistryPoint = inputChemistryEle.value;
+                // console.log(mathPoint, physicsPoint, chemistryPoint);
+                mathPseudouEle.innerHTML = mathPoint;
+                calculatePoint(mathPoint, physicsPoint, chemistryPoint);
+            })
+            inputPhysicsEle.addEventListener('change', () => {
+                let mathPoint = inputMathEle.value;
+                let physicsPoint = inputPhysicsEle.value;
+                let chemistryPoint = inputChemistryEle.value;
+                // console.log(mathPoint, physicsPoint, chemistryPoint);
+                physicsPseudouEle.innerHTML = physicsPoint;
+                calculatePoint(mathPoint, physicsPoint, chemistryPoint);
+            })
+            inputChemistryEle.addEventListener('change', () => {
+                let mathPoint = inputMathEle.value;
+                let physicsPoint = inputPhysicsEle.value;
+                let chemistryPoint = inputChemistryEle.value;
+                // console.log(mathPoint, physicsPoint, chemistryPoint);
+                chemistryPseudouEle.innerHTML = chemistryPoint;
+                calculatePoint(mathPoint, physicsPoint, chemistryPoint);
+            })
+        }
+
+
+        //reset handler
+        resetButtonEle.addEventListener('click', () => {
+            const listRowEles = bodyTable.childNodes;
+            for (let rowIndex = 0; rowIndex < listRowEles.length; rowIndex++) {
+                const rowEle = listRowEles[rowIndex];
+                console.log(rowEle.childNodes.length);
+                const nameEle = rowEle.childNodes[1];
+                const inputNameEle = nameEle.childNodes[0];
+                inputNameEle.value = "";
+                nameEle.childNodes[1].innerHTML = "";
+
+                const mathPointEle = rowEle.childNodes[2];
+                const inputMathPointEle = mathPointEle.childNodes[0];
+                inputMathPointEle.value = "";
+                mathPointEle.childNodes[1].innerHTML = "";
+                
+
+                const physicsPointEle = rowEle.childNodes[3];
+                const inputPhysicsPointEle = physicsPointEle.childNodes[0];
+                inputPhysicsPointEle.value = "";
+                physicsPointEle.childNodes[1].innerHTML = "";
+
+                const chemistryPointEle = rowEle.childNodes[4];
+                const inputChemistryPointEle = chemistryPointEle.childNodes[0];
+                inputChemistryPointEle.value = "";
+                chemistryPointEle.childNodes[1].innerHTML = "";
+
+
+                const averagePointEle = rowEle.childNodes[5];
+                const inputAveragePointEle = averagePointEle.childNodes[0];
+                inputAveragePointEle.value = "";
+                averagePointEle.childNodes[1].innerHTML = "";
+
+
+                const categoryPointEle = rowEle.childNodes[6];
+                const inputCategoryPointEle = categoryPointEle.childNodes[0];
+                inputCategoryPointEle.value = "";
+                categoryPointEle.childNodes[1].innerHTML = "";
+
+            }
+        })
+
+        const tableStudent = document.getElementById('student-table');
+        const saveEle = document.getElementById('export-excel');
+        saveEle.addEventListener('click', exportTableToExcel);
+
+
+        function exportTableToExcel() {
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById('student-table');
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+            // Specify file name
+            filename = 'students_data.xls';
+
+            // Create download link element
+            downloadLink = document.createElement("a");
+
+            document.body.appendChild(downloadLink);
+
+            if (navigator.msSaveOrOpenBlob) {
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob(blob, filename);
+            } else {
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+                // Setting the file name
+                downloadLink.download = filename;
+
+                //triggering the function
+                downloadLink.click();
+            }
+        }
+    </script>
+    <!-- <script src="/script.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <%- include('../includes/footer.ejs') %>
