@@ -1,0 +1,4 @@
+Excercise 5:
+	1. Làm lại bài tính điểm trung bình và build 1 cái clock có dùng jQuery
+(Có chỗ nào sử dụng được jQuery thì các bạn trẻ cứ sài nhé, dùng càng nhiều, càng tốt)
+Ví dụ như những sự kiện click button, remove items,...

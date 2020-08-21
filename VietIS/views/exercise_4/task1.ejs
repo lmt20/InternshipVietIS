@@ -101,6 +101,7 @@
                 namePseudouEle.innerHTML = inputNameEle.value;
             })
 
+
             const mathPointEle = document.createElement('td');
             const inputMathEle = document.createElement('input');
             mathPointEle.appendChild(inputMathEle);
@@ -184,34 +185,62 @@
                 }
             }
 
+            function resetInvalidInput(){
+                inputAverageEle.value = "";
+                averagePseudouEle.innerHTML ="";
+                inputCategoryEle.value = "";
+                categoryPseudouEle.innerHTML = "";
+            }
 
             inputMathEle.addEventListener('change', () => {
-                let mathPoint = inputMathEle.value;
+                let mathPoint = parseFloat(inputMathEle.value);
+                if( isNaN(mathPoint) || mathPoint > 10 || mathPoint < 0){
+                    mathPseudouEle.innerHTML = "You has entered wrong input value. Please try again!";
+                    mathPseudouEle.setAttribute('class', 'error-display');
+                    mathPseudouEle.setAttribute('style', 'display: block;');
+                    return resetInvalidInput();
+                }
+                inputMathEle.value = mathPoint;
                 let physicsPoint = inputPhysicsEle.value;
                 let chemistryPoint = inputChemistryEle.value;
                 // console.log(mathPoint, physicsPoint, chemistryPoint);
                 mathPseudouEle.innerHTML = mathPoint;
+                mathPseudouEle.setAttribute('style', 'display: none');
                 calculatePoint(mathPoint, physicsPoint, chemistryPoint);
             })
             inputPhysicsEle.addEventListener('change', () => {
                 let mathPoint = inputMathEle.value;
-                let physicsPoint = inputPhysicsEle.value;
+                let physicsPoint = parseFloat(inputPhysicsEle.value);
+                if( isNaN(physicsPoint) || physicsPoint > 10 || physicsPoint < 0){
+                    physicsPseudouEle.innerHTML = "You has entered wrong input value. Please try again!";
+                    physicsPseudouEle.setAttribute('class', 'error-display');
+                    physicsPseudouEle.setAttribute('style', 'display: block;');
+                    return resetInvalidInput();
+                }
+                inputPhysicsEle.value = physicsPoint;
                 let chemistryPoint = inputChemistryEle.value;
                 // console.log(mathPoint, physicsPoint, chemistryPoint);
                 physicsPseudouEle.innerHTML = physicsPoint;
+                physicsPseudouEle.setAttribute('style', 'display: none');
                 calculatePoint(mathPoint, physicsPoint, chemistryPoint);
             })
             inputChemistryEle.addEventListener('change', () => {
                 let mathPoint = inputMathEle.value;
                 let physicsPoint = inputPhysicsEle.value;
-                let chemistryPoint = inputChemistryEle.value;
+                let chemistryPoint = parseFloat(inputChemistryEle.value);
+                if( isNaN(chemistryPoint) || chemistryPoint > 10 || chemistryPoint < 0){
+                    chemistryPseudouEle.innerHTML = "You has entered wrong input value. Please try again!";
+                    chemistryPseudouEle.setAttribute('class', 'error-display');
+                    chemistryPseudouEle.setAttribute('style', 'display: block;');
+                    return resetInvalidInput();
+                }
+                inputChemistryEle.value = chemistryPoint;
                 // console.log(mathPoint, physicsPoint, chemistryPoint);
                 chemistryPseudouEle.innerHTML = chemistryPoint;
+                chemistryPseudouEle.setAttribute('style', 'display: none');
                 calculatePoint(mathPoint, physicsPoint, chemistryPoint);
             })
         }
-
-
         //reset handler
         resetButtonEle.addEventListener('click', () => {
             const listRowEles = bodyTable.childNodes;
@@ -263,31 +292,294 @@
             var downloadLink;
             var dataType = 'application/vnd.ms-excel';
             var tableSelect = document.getElementById('student-table');
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-
-            // Specify file name
-            filename = 'students_data.xls';
-
-            // Create download link element
+            var html = tableSelect.outerHTML;    
+            // console.log(html);
+            let chars = [
+            "À	",
+            "Á	",
+            "Â	",
+            "Ã	",
+            "È	",
+            "É	",
+            "Ê	",
+            "Ì	",
+            "Í	",
+            "Ò	",
+            "Ó	",
+            "Ô	",
+            "Õ	",
+            "Ù	",
+            "Ú	",
+            "Ý	",
+            "à	",
+            "á	",
+            "â	",
+            "ã	",
+            "è	",
+            "é	",
+            "ê	",
+            "ì	",
+            "í	",
+            "ò	",
+            "ó	",
+            "ô	",
+            "õ	",
+            "ù	",
+            "ú	",
+            "ý	",
+            "Ỳ	",
+            "Ỹ	",
+            "ỳ	",
+            "ỹ	",
+            "Ỷ	",
+            "ỷ	",
+            "Ỵ	",
+            "ỵ	",
+            "ự	",
+            "Ự	",
+            "ử	",
+            "Ử	",
+            "ữ	",
+            "Ữ	",
+            "ừ	",
+            "Ừ	",
+            "ứ	",
+            "Ứ	",
+            "ư	",
+            "Ư	",
+            "ụ	",
+            "Ụ	",
+            "ủ	",
+            "Ủ	",
+            "ũ	",
+            "Ũ	",
+            "ợ	",
+            "Ợ	",
+            "ở	",
+            "Ở	",
+            "ỡ	",
+            "Ỡ	",
+            "ờ	",
+            "Ờ	",
+            "ớ	",
+            "Ớ	",
+            "ơ	",
+            "Ơ	",
+            "ộ	",
+            "Ộ	",
+            "ổ	",
+            "Ổ	",
+            "ỗ	",
+            "Ỗ	",
+            "ồ	",
+            "Ồ	",
+            "ố	",
+            "Ố	",
+            "ọ	",
+            "Ọ	",
+            "ỏ	",
+            "Ỏ	",
+            "ị	",
+            "Ị	",
+            "ỉ	",
+            "Ỉ	",
+            "ĩ	",
+            "Ĩ	",
+            "ệ	",
+            "Ệ	",
+            "ể	",
+            "Ể	",
+            "ễ	",
+            "Ễ	",
+            "ề	",
+            "Ề	",
+            "ế	",
+            "Ế	",
+            "ẹ	",
+            "Ẹ	",
+            "ẻ	",
+            "Ẻ	",
+            "ẽ	",
+            "Ẽ	",
+            "ặ	",
+            "Ặ	",
+            "ẳ	",
+            "Ẳ	",
+            "ẵ	",
+            "Ẵ	",
+            "ằ	",
+            "Ằ	",
+            "ắ	",
+            "Ắ	",
+            "ă	",
+            "Ă	",
+            "ậ	",
+            "Ậ	",
+            "ẩ	",
+            "Ẩ	",
+            "ẫ	",
+            "Ẫ	",
+            "ầ	",
+            "Ầ	",
+            "ấ	",
+            "Ấ	",
+            "ạ	",
+            "Ạ	",
+            "ả	",
+            "Ả	",
+            "đ	",
+            "₫	",
+            "Đ	",
+            ];
+            let entityCodes = [
+            "   	&#192;",
+            "   	&#193;",
+            "   &#194;",
+            "   	&#195;",
+            "   	&#200;",
+            "   	&#201;",
+            "   &#202;",
+            "   	&#204;",
+            "   	&#205;",
+            "   	&#210;",
+            "   	&#211;",
+            "   &#212;",
+            "   	&#213;",
+            "   	&#217;",
+            "   	&#218;",
+            "   	&#221;",
+            "   	&#224;",
+            "   	&#225;",
+            "   &#226;",
+            "   	&#227;",
+            "   	&#232;",
+            "   	&#233;",
+            "   &#234;",
+            "   	&#236;",
+            "   	&#237;",
+            "   	&#242;",
+            "   	&#243;",
+            "   &#244;",
+            "   	&#245;",
+            "   	&#249;",
+            "   	&#250;",
+            "   	&#253;",
+            "	&#7922;",
+            "	&#7928;",
+            "	&#7923;",
+            "	&#7929;",
+            "	&#7926;",
+            "	&#7927;",
+            "	&#7924;",
+            "	&#7925;",
+            "	&#7921;",
+            "	&#7920;",
+            "	&#7917;",
+            "	&#7916;",
+            "	&#7919;",
+            "	&#7918;",
+            "	&#7915;",
+            "	&#7914;",
+            "	&#7913;",
+            "	&#7912;",
+            "	&#432;",
+            "	&#431;",
+            "	&#7909;",
+            "	&#7908;",
+            "	&#7911;",
+            "	&#7910;",
+            "	&#361;",
+            "	&#360;",
+            "	&#7907;",
+            "	&#7906;",
+            "	&#7903;",
+            "	&#7902;",
+            "	&#7905;",
+            "	&#7904;",
+            "	&#7901;",
+            "	&#7900;",
+            "	&#7899;",
+            "	&#7898;",
+            "	&#417;",
+            "	&#416;",
+            "	&#7897;",
+            "	&#7896;",
+            "	&#7893;",
+            "	&#7892;",
+            "	&#7895;",
+            "	&#7894;",
+            "	&#7891;",
+            "	&#7890;",
+            "	&#7889;",
+            "	&#7888;",
+            "	&#7885;",
+            "	&#7884;",
+            "	&#7887;",
+            "	&#7886;",
+            "	&#7883;",
+            "	&#7882;",
+            "	&#7881;",
+            "	&#7880;",
+            "	&#297;",
+            "	&#296;",
+            "	&#7879;",
+            "	&#7878;",
+            "	&#7875;",
+            "	&#7874;",
+            "	&#7877;",
+            "	&#7876;",
+            "	&#7873;",
+            "	&#7872;",
+            "	&#7871;",
+            "	&#7870;",
+            "	&#7865;",
+            "	&#7864;",
+            "	&#7867;",
+            "	&#7866;",
+            "	&#7869;",
+            "	&#7868;",
+            "	&#7863;",
+            "	&#7862;",
+            "	&#7859;",
+            "	&#7858;",
+            "	&#7861;",
+            "	&#7860;",
+            "	&#7857;",
+            "	&#7856;",
+            "	&#7855;",
+            "	&#7854;",
+            "	&#259;",
+            "	&#258;",
+            "	&#7853;",
+            "	&#7852;",
+            "	&#7849;",
+            "	&#7848;",
+            "	&#7851;",
+            "	&#7850;",
+            "	&#7847;",
+            "	&#7846;",
+            "	&#7845;",
+            "	&#7844;",
+            "	&#7841;",
+            "	&#7840;",
+            "	&#7843;",
+            "	&#7842;",
+            "	&#273;",
+            "	&#8363;",
+            "	&#272;",
+            ];
+            chars.forEach((char, index) => {
+                html = html.replace(new RegExp(char.trim(), 'g'), entityCodes[index].trim());
+            });
             downloadLink = document.createElement("a");
-
             document.body.appendChild(downloadLink);
-
-            if (navigator.msSaveOrOpenBlob) {
-                var blob = new Blob(['\ufeff', tableHTML], {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob(blob, filename);
-            } else {
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-
-                // Setting the file name
-                downloadLink.download = filename;
-
-                //triggering the function
-                downloadLink.click();
-            }
+            // Create a link to the file
+            downloadLink.href = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+            // Setting the file name
+            downloadLink.download = 'students_data.xls';
+            //triggering the function
+            downloadLink.click();
+            // window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
         }
     </script>
     <!-- <script src="/script.js"></script> -->
