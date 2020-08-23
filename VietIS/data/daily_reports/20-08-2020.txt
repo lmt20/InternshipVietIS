@@ -1,0 +1,69 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 20/08/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+- Tìm hiểu về JQuery
+B. Actual today
+1. 1. Tổng quan
+- JQuery là một thư viện của JavaScript mục đích nhằm đơn giản những tác vụ, script viết bằng JavaScript thuần.
++ Thao tác với DOM và các attributes của nó.
++ Tạo các hiệu ứng, tạo các CSS animation một cách đơn giản
++ Thao tác với Ajax dễ dàng
+- Lợi ích:
++ Tiết kiệm thời gian viết code
++ Đơn giản hóa các tasks
++ Tương thích với các trình duyệt
+ 2. Lựa chọn các elements
+ - By Id
+ - By class name
+ - By element name
+ - By Attribute
+ - By special custom selector: :odd, :even, :first, :last, :text, :password, :submit 
+ 3. JQuery Events:
+- Mouse events: click(), dblclick(), hover(), mouseenter(), mouuseleave()
+- Keyboard Events: keypress(), keydown(), keyup()
+- Form Events: change(), focus(), blur(), submit()
+- Windown Events: ready(), resize(), scroll(), 
+4. Effect
+- show(), hide(), toggle()
+- fadeIn(), fadeOut(), fadeToggle(), fadeTo()
+- slideUp(), slideDown(), slideToggle()
+- animate()
+- stop()
+5. Chaining and Callback
+- Các phương thức setter sẽ trả về một đối tượng jQuery, getter trả về một giá trị
+--> Khi trả về một đối tượng jQuery ta có thể tiếp tục gọi các phương thức jQuery --> Chainning.
+- Callback funtion được thực thi mỗi khi effect hoàn thành --> Thường là tham số cuối cùng trong các phương thức của jQuery.
+6. Manipulation
+***  text(), html(), attr(), val(),..
+- khi không truyền tham số --> các phương thức trên sẽ trả về giá trị của elements --> getters.
+- Khi truyền tham số --> các phương thức trền sẽ set giá trị cho element đó và trả về jQuery Object --> setters
+*** Chèn thêm content: 
+- append() , prepend(), before(), after()
+*** Xóa elements & attribute"
+- empty(), remove(), removeAttr() 
+*** Wrap and unwrap element: wrap(), unwrap()
+*** Thêm và xóa CSS classes
+- addClass(), removeClass(), toggleClass()
+*** get và set các thuộc tính CSS
+- css("propertyName")
+- css("propertyName", "value")
+- css({"propertyName":"value", ...}
+*** Dimensions(height, width)
+- height(), innerHeight(), outerHeight(), outerHeight(true)
+- width(), innerWidth(), outerWidth(), outerWidth(true)
+7. Traversing
+- Ancestors: parent(), parents(), parentsUtils()
+- Descendants: children(), find() 
+- Siblings: siblings(), next(), nextAll(), nextUtil(), prev(), prevAll(), prevUtil()
+8. Filtering
+- first(), last(), eq(), slice(), has(), filter(), not().
+9. Ajax
+- Load data: $(selector).load(URL, data, complete)
+- Send and receive data:
+ + $.get(URL, data, success)
+ + $.post(URL, data, success)
+C. Issue:
+- Không gặp khó khăn gì

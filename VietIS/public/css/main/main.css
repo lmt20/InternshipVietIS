@@ -69,3 +69,11 @@
 .justify-content-end {
     justify-content: end;
 }
+
+/* exercise-5 student-table */
+.error-display{
+    color: red;
+    font-size: small;
+    width: 90%;
+    margin-bottom: 0;
+}

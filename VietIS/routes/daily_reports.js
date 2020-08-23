@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    const date = '10-08-2020';
+    const date = '21-08-2020';
     const nl2br = (str) => {
         return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
     };
