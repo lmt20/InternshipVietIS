@@ -1,0 +1,13 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 07/09/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+1.shell, clipboard
+2.Build and Package
+B. Actual today - 100%
+1.shell, clipboard
+2.Build and Package
+C. Issue:
+- Không gặp khó khăn gì

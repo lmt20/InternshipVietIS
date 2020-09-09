@@ -1,0 +1,32 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 27/08/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+1. SQLite Database
+2. Impport/Export exel
+B. Actual today
+1. SQlite database - 100%
+*** sqlite
+- Là một thư viện triển khai một SQL Database Engine --> quản trị cơ sở dữ liệu quan hệ (DBMS) 
+- Không yêu cầu một tiến trình server riêng rẽ để hoạt động, chương trình gồm 1 file duy nhất, không cần cấu hình hay cài đặt, không có khái niệm user, password hay permission.
+- Database được lưu ở một file duy nhất
+- Hỗ trợ căn bản các chức năng của một ngôn ngữ truy vấn
+- Chỉ phù hợp để tiếp cận database. Không được dùng nhiều trong thực tế.
+*** sqlite3 module
+- module cho phép làm việc và thao tác với sqlite database. 
+2. Impport/Export excel - 100%
+*** xlsx module
+- Cung cấp các chức năng cho phép phân tích, ghi và làm việc với các spreadsheet
+*** xlsx-p
+*** xlsx-populate
+- Cung cấp các chắc năng mở rộng làm việc với excel:
++ Sinh data 
++ Phân tích data
++ Thao tác với data 
++ Validate data
++ Style
+
+C. Issue:
+- Không gặp khó khăn gì

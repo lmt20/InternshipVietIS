@@ -1,0 +1,37 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 01/09/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+1. Window Browser
+2. Web Content
+B. Actual today
+1. Window Browser
+- Tạo và điều khiển các cửa sổ browser
+- Thuộc Main process
+- Khởi tạo một instance của BrowserWindow với nhiều tùy chọn tham số
+(height, with, x, y,...)
+- Cung cấp các phương thức static và các phương thức của riêng các instance.
++ static methods: ex: BrowserWindow.getAllWindows(), BrowserWindow.getFocusedWindow()...
++ instance methods: ex: destroy(), close(), focus(), blur(),..
+- Các properties và events trên các instance:
++ events: ex: close, closed, responsive, unresponsive, blur, focus, hide, ready-to-show,...
++ properties: webContents, id, title, movable,...
+2. webContents
+- Hiển thị và điều khiển các trang web, là một thuộc tính của đối tượng WindowBrowser 
+- Các static methods được truy cập từ webContents (from webContents module):
++ webContents.getAllWebContents()
++ webContents.getFocusedWebContents()
++ webContents.fromId()
+...
+- Các instance method: 
++ contents.loadURL()
++ contents.loadFile() 
++ contents.downloadURL()
++ contents.focus()
++ contents.reload()
++ contents.executeJavaScript()
+...
+C. Issue:
+- Không gặp khó khăn gì

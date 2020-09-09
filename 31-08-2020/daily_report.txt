@@ -1,0 +1,23 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 31/08/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+1. Electron Introduction
+B. Actual today
+1. Introduction
+- Electron là open-source framwork được phát triển bởi Github. Xây dựng những ứng dụng GUI trên destop trên nền tảng web. Nó kết hợp giữa engine của Chromium và NodeJS runtime.
+*** Electron Application Architecture
+- Hai loại process trong Electron:
++ Main process: Electron có duy nhất một tiến trình chính chạy main.js file (config trong package.json) --> Thao tác vói GUI, lower operating system. Main process tạo ra các BrowserWindow instance -> Tạo nên các trang web page chạy trên renderer process
++ Renderer process: render các trang web pages 
+*** Using API:
+- NodeJS APIs: Tất cả các API của Nodejs đều khả dụng trong Electron.
+(Note: các module native của nodeJS phải được biên dịch trước khi chạy trên electron)
+- Electron APIs: Electron cung cấp một số lượng lớn APIs để phát triển các ứng dụng destop:
++ Một số chỉ được sử dụng trên main process
++ Một số chỉ được dùng trên renderer process
++ Một số dùng được trên cả 2 loại process
+C. Issue:
+- Không gặp khó khăn gì

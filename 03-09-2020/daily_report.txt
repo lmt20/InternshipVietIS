@@ -1,0 +1,22 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 03/09/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+1. Session
+2. Dialog
+3. Accelerator & global shortcut
+B. Actual today - 100%
+1. Session 
+- Quản lý browser session, cookies, cache, proxy setting,...
+2. DiaLog 
+- Hiển thị system dialog cho việc mở hoặc lưu trữ files, alerting,...
++ showOpenDialog()
++ showSaveDialog()
++ showMessageBox()
+3. Accelerator & global shortcut
+- Tạo hoặc hủy các shortcut cho apps
+
+C. Issue:
+- Không gặp khó khăn gì
