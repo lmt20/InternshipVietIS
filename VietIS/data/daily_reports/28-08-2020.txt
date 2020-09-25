@@ -1,0 +1,14 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 28/08/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+*** CALL WIN32 DLL
+B. Actual today
+1. ffi - 100%
+2. ref - 100%
+3. ffi-napi - 100%
+4. ref-struct - 100%
+C. Issue:
+- Không gặp khó khăn gì

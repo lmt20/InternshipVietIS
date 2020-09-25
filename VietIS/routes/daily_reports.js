@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    const date = '21-08-2020';
+    const date = '10-08-2020';
     const nl2br = (str) => {
         return str.replace(/(?:\r\n|\r|\n)/g, '<br>');
     };
@@ -23,6 +23,13 @@ router.get('/', (req, res, next) => {
     });
 
 })
+router.get('/final-project', (req, res, next) => {
+    res.render('daily_reports/final-project', {
+        exercise: 'report-type',
+        task: '',
+    });
+})
+
 router.get('/:date', (req, res, next) => {
     const date = req.params.date;
     const nl2br = (str) => {
@@ -41,8 +48,8 @@ router.get('/:date', (req, res, next) => {
             throw error;
         }
     });
-
 })
+
 router.get('/download/:date', (req, res, next) => {
     const date = req.params.date;
     const filePath = path.join('data', 'daily_reports', `${date}.txt`); 
@@ -52,5 +59,7 @@ router.get('/download/:date', (req, res, next) => {
         }
     })
 })
+
+
 
 module.exports = router;

@@ -1,0 +1,39 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 26/08/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+* Tìm hiểu về System Process:
+1. spawn
+2. exec
+3. node-Wmic
+4. find-process
+B. Actual today
+Một cách khắc phục tính đơn luồng của JS khi gặp những task nặng cần thời gian xử lý là tạo một process con. Tận dụng tính multiprocessing của hệ điều hành --> main process và child process chạy đồng thời.
+
+Sử dụng module child_process trong Nodejs cho phép ta tạo ra các tiến trình con.
+
+1. exec
+- Tạo các tiến trình bằng cách lấy kết quả của child process thông qua buffer hoặc string (get everything in once)	
+- Hàm exec() tạo ra một shell process và thực thi các command trong shell đó --> output được lưu trong buffer --> Có thể truy cập qua callback function.
+
+2. spawn
+- Tạo các tiến trình bằng cách lấy kết quả của child process từ một data stream (get in chunks via stream) 
+3. fork 
+- Là một dạng khác của spawn --> Cho phép giao tiếp giữa các tiến trình cha và con. Tiến trình cha có thể gửi message tới tiến trình con và ngược lại 
+
+** Reference: https://www.digitalocean.com/community/tutorials/how-to-launch-child-processes-in-node-js
+4. node-wmic
+- WMIC: Windows Management Instrumentation Commandline
+- WMIC cho phép người dùng truy cập các thông tin trên máy tính window --> qua command-line để lấy các thông số. 
+** Refer CLI cheatsheet: https://www.andreafortuna.org/2017/08/09/windows-command-line-cheatsheet-part-2-wmic/
+- module node-wmic của nodejs trên npm cho phép chuyển đổi đầu ra của các câu lệnh WMIC thành các array JS một cách dễ dàng.
+5. find-process
+Với module find-process trên npm bạn có thể:
+- Tìm các process đang chạy trên một cổng cụ thể
+- Tìm các process bằng pid (process identification number)
+- Tìm các process bằng name hoặc name pattern.
+
+C. Issue:
+- Không gặp khó khăn gì

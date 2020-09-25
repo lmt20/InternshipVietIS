@@ -1,0 +1,15 @@
+Em Lê Mạnh Trường báo cáo tiến độ ngày 10/09/2020
+Link theo dõi bài tập:
+Link Demo: https://internship-vietis.herokuapp.com
+Github: https://github.com/lmt20/InternshipVietIS.git
+GoogleDriver: https://drive.google.com/drive/folders/1sKnIEKbWfZ2C71S7MXjmWN6dsLWrN0Ur
+A. Plan today
+- Hoàn thành ToDoList Project
+- Báo cáo kết quả
+B. Actual today - 100%
+- Hoàn thành ToDoList Project
+- Các project cá nhân tự làm: Pomodoro Timer, Monitor System
+- Báo cáo kết quả
+
+C. Issue:
+- Không gặp khó khăn gì
